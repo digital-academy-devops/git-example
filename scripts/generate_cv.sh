@@ -1,17 +1,20 @@
 #!/bin/bash
-#set -x
 
-SRC="src"
-BUILD="build"
+SCRIPT_DIR=$(readlink -f $(dirname $BASH_SOURCE))
+echo $SCRIPT_DIR
+ROOT_DIR=$(readlink -f "$SCRIPT_DIR/..")
 
-mkdir -p $BUILD
+SRCDIR="$ROOT_DIR/src"
+BUILDDIR="$ROOT_DIR/build"
 
-SKILLS="$SRC/skills.yaml"
-YAMLCV="$SRC/yamlcv.yaml"
-CV="$BUILD/cv.yaml"
+mkdir -p $BUILDDIR
+
+SKILLS="$SRCDIR/skills.yaml"
+YAMLCV="$SRCDIR/yamlcv.yaml"
+CV="$BUILDDIR/cv.yaml"
 
 echo 'cleanup'
-rm -vf $BUILD/* 2>/dev/null
+rm -vf $BUILDDIR/* 2>/dev/null
 echo 'copy template'
 cp -v $YAMLCV $CV
 
