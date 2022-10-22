@@ -8,18 +8,10 @@ details:
 
 profile: |
   Focused, energetic and motivated to learn DevOps.
-  
+
 contact:
 - text: my@domain.net
   url: "mailto:my@domain.net"
   icon: email
 
-technical:
-  - category: "Languages"
-    items: python, golang
-  - category: "Containers & Orchestration"
-    items: docker, docker-compose, k8s
-  - category: "CI/CD"
-    items: jenkins, GitHub Actions
-  - category: "Cloud"
-    items: AWS
+technical: []

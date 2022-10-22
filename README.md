@@ -3,6 +3,13 @@
 
 ## Настройка
 
+Установите yq, например:
+```shell
+brew install yq
+```
+
+
+### Hooks
 Для автоматической проверки корректности синтаксиса YAML, проект использует [pre-commit](https://pre-commit.com).
 
 Требуется [установить](https://pre-commit.com/#installation) его любым удобным способом.

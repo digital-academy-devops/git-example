@@ -1,0 +1,38 @@
+# This file is used to extend skills with additional fields and used
+# as source for generating "technical" list for yaml-cv formatted YAML file
+
+categories:
+  - &lang # this is YAML Anchor
+    Languages
+  - &containers
+    Containers & Orchestration
+  - &cicd
+    CI/CD
+  - &cloud
+    Cloud
+
+skills:
+- name: python
+  level: middle
+  category: *lang # this is YAML alias
+- name: golang
+  level: middle
+  category: *lang
+- name: docker
+  level: middle
+  category: *containers
+- name: docker-compose
+  level: middle
+  category: *containers
+- name: k8s
+  level: middle
+  category: *containers
+- name: jenkins
+  level: middle
+  category: *cicd
+- name: GitHub Actions
+  level: middle
+  category: *cicd
+- name: AWS
+  level: middle
+  category: *cloud
