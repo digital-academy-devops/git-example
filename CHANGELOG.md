@@ -1,3 +1,11 @@
+# v1.1.0
+
+Added:
+- Automated with Taskfile
+
+Fixed:
+- yq setup instructions
+
 # v1.0.0
 
 Added:
