@@ -1,13 +1,22 @@
 # YAML CV
-Этот репозиторий содержит моё резюме в формате YAML.
+Этот репозиторий содержит резюме в формате [yaml-cv](https://github.com/haath/yaml-cv).
 
 ## Настройка
 
-Установите yq, например:
+Установите [yq v4](https://mikefarah.gitbook.io/yq/), например:
 ```shell
-brew install yq
+brew install yq==
 ```
 
+Установите [yaml-cv](https://github.com/haath/yaml-cv):
+```shell
+gem install yaml-cv
+```
+
+Для создания PDF-версии, требуется `wkhtmltopdf`:
+```shell
+brew install wkhtmltopdf
+```
 
 ### Hooks
 Для автоматической проверки корректности синтаксиса YAML, проект использует [pre-commit](https://pre-commit.com).
@@ -37,3 +46,10 @@ pre-commit run --all-files
 - [src/skills.yaml](src/skills.yaml)
 
   Список навыков в расширенном формате. Навык должен обязательно включать `category` и `name`, а так же любой набор дополнительных полей.
+
+### Сборка
+
+Запустите:
+```shell
+scripts/build.sh
+```

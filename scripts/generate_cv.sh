@@ -1,7 +1,7 @@
 #!/bin/bash
+set -e
 
 SCRIPT_DIR=$(readlink -f $(dirname $BASH_SOURCE))
-echo $SCRIPT_DIR
 ROOT_DIR=$(readlink -f "$SCRIPT_DIR/..")
 
 SRCDIR="$ROOT_DIR/src"
@@ -11,7 +11,7 @@ mkdir -p $BUILDDIR
 
 SKILLS="$SRCDIR/skills.yaml"
 YAMLCV="$SRCDIR/yamlcv.yaml"
-CV="$BUILDDIR/cv.yaml"
+export CV="$BUILDDIR/cv.yaml"
 
 echo 'cleanup'
 rm -vf $BUILDDIR/* 2>/dev/null
@@ -27,3 +27,5 @@ for CATEGORY in $CATEGORIES; do
    echo "updating '$CATEGORY' items in $CV"
    yq -i '.technical += {"category": env(CATEGORY), "items": env(ITEMS)}' $CV
 done
+
+echo "Successfully built $CV"
