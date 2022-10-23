@@ -18,6 +18,11 @@ gem install yaml-cv
 brew install wkhtmltopdf
 ```
 
+Установите [Taskfile](https://taskfile.dev):
+```shell
+brew install go-task/tap/go-task
+```
+
 ### Hooks
 Для автоматической проверки корректности синтаксиса YAML, проект использует [pre-commit](https://pre-commit.com).
 
@@ -36,6 +41,10 @@ pre-commit run --all-files
 
 ## Использование
 
+```shell
+task --list-all
+```
+
 ### Обновление информации
 
 Исходный код включает 2 компонента:
@@ -51,5 +60,18 @@ pre-commit run --all-files
 
 Запустите:
 ```shell
-scripts/build.sh
+task build
+```
+
+### Конвертация в JSON
+
+```shell
+task json
+```
+
+### Поиск
+
+Вывод навыков по уровню владения (`junior|middle|senior`):
+```shell
+task skill_by_level -- <level>
 ```

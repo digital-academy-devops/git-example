@@ -14,5 +14,5 @@ contact:
   url: "mailto:my@domain.net"
   icon: email
 
-# dummy list, automatically populated with data from skills.yaml
+# automatically populated with data from skills.yaml
 technical: []

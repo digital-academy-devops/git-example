@@ -3,16 +3,21 @@ set -e
 
 SCRIPT_DIR=$(readlink -f $(dirname $BASH_SOURCE))
 ROOT_DIR=$(readlink -f "$SCRIPT_DIR/..")
-BUILDDIR="$ROOT_DIR/build"
+BUILD_PATH="$ROOT_DIR/$BUILD_PATH"
+
+source $ROOT_DIR/.env
 
 echo "Building yamlcv"
-# importing $CV
-source $SCRIPT_DIR/generate_cv.sh
+$SCRIPT_DIR/generate_cv.sh
 
-echo "Building HTML from $CV"
-yaml-cv yaml-cv $CV > $BUILDDIR/cv.html
+CV_YAML="$BUILD_PATH/$CV.yaml"
+CV_HTML="$BUILD_PATH/$CV.html"
+CV_PDF="$BUILD_PATH/$CV.pdf"
+
+echo "Building HTML from $CV_YAML"
+yaml-cv yaml-cv $CV_YAML > $BUILD_PATH/${CV}.html
 
 echo "Building PDF from $CV"
-yaml-cv yaml-cv $CV --pdf $BUILDDIR/cv.pdf
+yaml-cv yaml-cv $CV_YAML --pdf $BUILD_PATH/${CV}.pdf
 
-echo "Check files in $BUILDDIR"
+echo "Check files in ./$BUILD_PATH directory"

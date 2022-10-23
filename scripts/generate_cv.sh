@@ -4,19 +4,20 @@ set -e
 SCRIPT_DIR=$(readlink -f $(dirname $BASH_SOURCE))
 ROOT_DIR=$(readlink -f "$SCRIPT_DIR/..")
 
-SRCDIR="$ROOT_DIR/src"
-BUILDDIR="$ROOT_DIR/build"
+source $ROOT_DIR/.env
+SRC_PATH="$ROOT_DIR/$SRC_PATH"
+BUILD_PATH="$ROOT_DIR/$BUILD_PATH"
 
-mkdir -p $BUILDDIR
+mkdir -p $BUILD_PATH
 
-SKILLS="$SRCDIR/skills.yaml"
-YAMLCV="$SRCDIR/yamlcv.yaml"
-export CV="$BUILDDIR/cv.yaml"
+SKILLS="$SRC_PATH/skills.yaml"
+YAMLCV="$SRC_PATH/yamlcv.yaml"
+CV_YAML="$BUILD_PATH/${CV}.yaml"
 
 echo 'cleanup'
-rm -vf $BUILDDIR/* 2>/dev/null
+rm -vf $BUILD_PATH/* 2>/dev/null
 echo 'copy template'
-cp -v $YAMLCV $CV
+cp -v $YAMLCV $CV_YAML
 
 IFS=$'\n'
 CATEGORIES=$(yq '.. comments="" | explode(.) | .categories[]' $SKILLS)
@@ -24,8 +25,8 @@ CATEGORIES=$(yq '.. comments="" | explode(.) | .categories[]' $SKILLS)
 for CATEGORY in $CATEGORIES; do
    export CATEGORY
    export ITEMS=$(yq '.. comments="" | explode(.) | .skills[] | select(.category == env(CATEGORY)) | .name as $item ireduce ([]; . + $item) | join(",") ' $SKILLS | uniq)
-   echo "updating '$CATEGORY' items in $CV"
-   yq -i '.technical += {"category": env(CATEGORY), "items": env(ITEMS)}' $CV
+   echo "updating '$CATEGORY' items in $CV_YAML"
+   yq -i '.technical += {"category": env(CATEGORY), "items": env(ITEMS)}' $CV_YAML
 done
 
-echo "Successfully built $CV"
+echo "Successfully built $CV_YAML"
