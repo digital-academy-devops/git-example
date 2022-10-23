@@ -1,5 +1,5 @@
 # This file is used to extend skills with additional fields and used
-# as source for generating "technical" list for yaml-cv formatted YAML file
+# as source for generating "technical" list in yamlcv.yaml.
 
 categories:
   - &lang # this is YAML Anchor
