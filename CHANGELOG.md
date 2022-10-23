@@ -1,3 +1,9 @@
+# v1.0.0
+
+Added:
+- skill additional metadata support
+- build automation
+
 # v0.1.0
 
 Added:
