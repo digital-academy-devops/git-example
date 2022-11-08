@@ -31,3 +31,11 @@ COPY Taskfile.yaml Taskfile.yaml
 COPY .env .env
 
 ENTRYPOINT ["/usr/bin/task"]
+
+FROM builder as build
+RUN task build
+
+FROM busybox as release
+WORKDIR /app
+COPY --from=build /app/build/cv.html cv.html
+VOLUME /app
