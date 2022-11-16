@@ -6,13 +6,13 @@ services:
         dockerfile: Dockerfile
         target: release
       volumes:  
-        - cv: /opt/app
+        - cv:/opt/app
     web:
       image: nginx:1.23-alpine
       ports: 
-      - 8080:80
+      - "8080:80"
       volumes:
-        - cv: /opt/app
+        - cv:/opt/app
 volumes: 
   cv:
     
