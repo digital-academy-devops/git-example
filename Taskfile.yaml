@@ -8,10 +8,18 @@ tasks:
       - scripts/build.sh
 
   json:
-      deps:
-        - build
-      cmds:
-       - yq '. | to_json' ${BUILD_PATH}/${CV}.yaml > ${BUILD_PATH}/${CV}.json
+    deps:
+      - build
+    cmds:
+      - yq '. | to_json' ${BUILD_PATH}/${CV}.yaml > ${BUILD_PATH}/${CV}.json
 
   skill_by_level:
     yq '.skills[] | select(.level == "{{.CLI_ARGS}}") | .name' ${SRC_PATH}/skills.yaml
+
+  up:
+    cmds:
+      - docker compose up
+
+  down:
+    cmds:
+      - docker compose down
